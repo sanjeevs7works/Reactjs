@@ -2,6 +2,7 @@ import ChartBar from './ChartBar.js';
 import './Chart.css';
 
 const Chart = (props) => {
+   //find max value of object (value field)
    const maxvalueArr = props.dataPoints.map((data) => data.value);
    const totalMax = Math.max(...maxvalueArr);
    return (
