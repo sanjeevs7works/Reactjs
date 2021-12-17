@@ -1,4 +1,4 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 import Card from '../UI/Card';
 import ExpenseDate from './ExpenseDate';
 import './ExpenseItem.css';
@@ -13,25 +13,23 @@ const ExpenseItem = (props) => {
    // };
 
    //use setState hook
-   const [title, setTitle] = useState(props.item.title);
+   // const [title, setTitle] = useState(props.item.title);
 
-   const changeTitleHandler = () => {
-      setTitle('update');
-      console.log(title);
-   };
+   // const changeTitleHandler = () => {
+   //    setTitle('update');
+   //    console.log(title);
+   // };
 
    return (
       <Card className='expense-item'>
          {/* use culry bracket to write expression in jsx */}
          {/*use another component  */}
-         <ExpenseDate date={props.item.date} />
+         <ExpenseDate date={props.date} />
          <div className='expense-item__description'>
-            <h2>{title}</h2>
-            <div className='expense-item__price'>${props.item.amount}</div>
+            <h2>{props.title}</h2>
+            <div className='expense-item__price'>${props.amount}</div>
          </div>
-         <button type='button' onClick={changeTitleHandler}>
-            Edit change
-         </button>
+        
       </Card>
    );
 };

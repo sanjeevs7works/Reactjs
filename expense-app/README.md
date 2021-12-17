@@ -25,3 +25,4 @@ components are like JavaScript functions. They accept arbitrary inputs (called
 const Component =()=>{
    return();
     };
+    
