@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import reactDOM from 'react-dom';
+
 import Button from '../UI/Button';
 import Card from '../UI/Card';
 import ErrorModal from '../UI/ErrorModal';
