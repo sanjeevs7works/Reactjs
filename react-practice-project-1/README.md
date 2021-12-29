@@ -1,4 +1,4 @@
-##  Project(practice project)
+## Project(practice project)
 
 In this project we have learned following given concept
 
