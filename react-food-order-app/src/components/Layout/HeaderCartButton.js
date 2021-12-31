@@ -5,7 +5,10 @@ import classes from './HeaderCartButton.module.css';
 
 const HeaderCartButton = (props) => {
    const cartCtx = useContext(CartContext);
-   const numberOfCartItem = cartCtx.items.length;
+   const numberOfCartItem = cartCtx.items.reduce((curNumber, item) => {
+      return curNumber + item.amount;
+   }, 0);
+
    return (
       <button className={classes.button} onClick={props.onShow}>
          <span className={classes.icon}>
