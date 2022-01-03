@@ -1,5 +1,4 @@
 import { useReducer } from 'react';
-import { act } from 'react-dom/cjs/react-dom-test-utils.production.min';
 import CartContext from './cart-context';
 
 const initialState = {
@@ -8,35 +7,48 @@ const initialState = {
 };
 const cartReducer = (state, action) => {
    let updatedItems;
+   //add item to cart handler
    if (action.type === 'ADD') {
+      //update total amount of cart
       updatedItems = state.items.concat(action.item);
       const updatedTotalAmount =
          state.totalAmount + action.item.price * action.item.amount;
+      //check whether item is already exist in cart or not
       const exitingCartItemIndex = state.items.findIndex(
          (item) => item.id === action.item.id
       );
+      //existing item
       const exitingCartItem = state.items[exitingCartItemIndex];
+      //if item already exist in cart
       if (exitingCartItem) {
+         //update amount in exiting item
          const updatedItem = {
             ...exitingCartItem,
             amount: exitingCartItem.amount + action.item.amount,
          };
          updatedItems = [...state.items];
+         //update item in cart
          updatedItems[exitingCartItemIndex] = updatedItem;
       }
+
       return {
          items: updatedItems,
          totalAmount: updatedTotalAmount,
       };
    }
+   //remove item from cart (handler function)
    if (action.type === 'REMOVE') {
+      //check index whether item already exist of not
       const exitingCartItemIndex = state.items.findIndex(
          (item) => item.id === action.id
       );
       const exitingCartItem = state.items[exitingCartItemIndex];
+      //if cart having only one similar item
       if (exitingCartItem.amount === 1) {
          updatedItems = state.items.filter((item) => item.id !== action.id);
-      } else {
+      }
+      //if cart having more than similar item
+      else {
          const updatedItem = {
             ...exitingCartItem,
             amount: exitingCartItem.amount - 1,
