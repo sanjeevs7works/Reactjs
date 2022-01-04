@@ -35,50 +35,15 @@ screen.
 It is called JSX, and it is a syntax extension to JavaScript. We recommend using
 it with React to describe what the UI should look like.
 
-It is called JSX, and it is a syntax extension to JavaScript. We recommend using
-it with React to describe what the UI should look like.
-
-It is called JSX, and it is a syntax extension to JavaScript. We recommend using
-it with React to describe what the UI should look like.
-
-It is called JSX, and it is a syntax extension to JavaScript. We recommend using
-it with React to describe what the UI should look like.
-
-It is called JSX, and it is a syntax extension to JavaScript. We recommend using
-it with React to describe what the UI should look like.
-
-It is called JSX, and it is a syntax extension to JavaScript. We recommend using
-it with React to describe what the UI should look like.
-
-It is called JSX, and it is a syntax extension to JavaScript. We recommend using
-it with React to describe what the UI should look like.
-
-It is called JSX, and it is a syntax extension to JavaScript. We recommend using
-it with React to describe what the UI should look like.
-
-It is called JSX, and it is a syntax extension to JavaScript. We recommend using
-it with React to describe what the UI should look like.
-
-It is called JSX, and it is a syntax extension to JavaScript. We recommend using
-it with React to describe what the UI should look like.
-
-It is called JSX, and it is a syntax extension to JavaScript. We recommend using
-it with React to describe what the UI should look like.
-
-It is called JSX, and it is a syntax extension to JavaScript. We recommend using
-it with React to describe what the UI should look like.
-
-It is called JSX, and it is a syntax extension to JavaScript. We recommend using
-it with React to describe what the UI should look like.
-
-It is called JSX, and it is a syntax extension to JavaScript. We recommend using
-it with React to describe what the UI should look like.
-
 `const elemnts=<h1>hello word <h1>;`
 
 ## Creating custom components (functional components)-
 
-`const myFunction=(props)=>{ return (jsx); } `
+```
+const myFunction=(props)=>{
+  return (jsx);
+   }
+```
 
 ## Adding basic styling const
 
