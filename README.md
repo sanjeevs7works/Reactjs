@@ -51,41 +51,221 @@ const myFunction=(props)=>{
 
 ## Outputting dynamic data and expression in jsx
 
-## Workingwith props
+```
+const name='sanjeev'
+const content=<h1>hello {name}</h1>
+```
+
+## Working with props
+
+```
+const element = <Welcome name="Sara" />;
+
+const Welcome=(props)=>{
+  return (<h1>hello {props.name}</h1>);
+}
+
+```
 
 ## Spliting Component into multiple components
 
+spliting your big chunk of code into multiple function to make function neat and
+clean
+
+use **import** keywords for importing function or variable
+`import Filename from './path'`
+
+use **export** keywords for exporting function or variable
+
+`default exports Filename`
+
 ## Listening to events and working with event handler
+
+event name should be camelCase and pass event handler function as reference
+
+```
+const activateLasers=()=>{
+  return someting
+}
+<button onClick={activateLasers}>
+  Activate Lasers
+</button>
+```
+
+most common event used in react
+
+-  onClick()
+   -  The onchange event occurs when the value of an element has been changed.
+-  onSubmit()
+
+   -  ```
+      submitHandler(event){
+        event.defaultPrevent();
+      }
+       <form onSubmit={submitHandler}></form>
+      ```
+
+-  onChange() -The onchange event occurs when the value of an element has been
+   changed.
+-  onBlur() -The onblur event occurs when an object loses focus.The onblur event
+   is most often used with form validation code (e.g. when the user leaves a
+   form field).
 
 ## Working with state(useState() hooks)
 
-## Form Input  onChange,onSubmit,onBlur,onClick
+`const [state,setState]=useState(initialValue);` `state` - its current value
+between re-renders, and provide the most recent one to our function.
+`setState()`-his is a way to “preserve” some values between the function calls
+
+intialValue be a any value(number,string,boolean,array,object,null ,undefinded)
+
+## Form Input
+
+```
+const [name,setName]=useState('');
+const onChangeHandler=(event)=>{
+  setState(event.target.value);
+}
+const submitHandle=(e)=>{
+   e.defaultPrevent();
+}
+
+<form onSubmit={submitHandler}>
+  <label>
+    Name:
+    <input type="text" name="name" onChange={onChangeHandler}/>
+  </label>
+  <input type="submit" value="Submit" />
+</form>
+```
 
 ## working with multiple states
 
+declare multiple state independently,as you need const []=useState(); const
+[]=useState();
+
 ## Using one state Instead
+
+```
+const [userInput,setUserInput]=useState({name:'',value:0});
+
+setUserInput({...userInput,value:event.target.value});
+```
 
 ## Updating state depends on previous state
 
-## Handling form submission
+```
+const [enteredName,setEnteredName]=useState('');
 
-## Two-way binding
+setEnteredName((preState)=>{
+  return {...preState,name:event.target.value}
+})
+
+```
+
+## Handling form submission and Two-way binding
+
+```
+const [enteredName,setEnteredName]=useState('');
+const onChangeHandler=(e)=>{
+  setEnteredName(e.target.value);
+}
+const submitHandle=(e)=>{
+   e.defaultPrevent();
+   setEnteredName('');
+}
+
+<form onSubmit={submitHandler}>
+  <label>
+    Name:
+    <input type="text" name="name" value={enteredName} onChange={onChangeHandler}/>
+  </label>
+  <input type="submit" value="Submit" />
+</form>
+
+```
 
 ## Child to parent component commucaton(State-up)
 
+```
+<Expense onHide={onHideHandler}/>
+const Expense=(props)=>{
+
+
+  const submitHandle=(e)=>{
+   e.defaultPrevent();
+   const name={
+     name:e.target.value
+   }
+    props.onHide(name);
+   setEnteredName('');
+}
+
+<form onSubmit={submitHandler}>
+  <label>
+    Name:
+    <input type="text" name="name" value={enteredName} onChange={onChangeHandler}/>
+  </label>
+  <input type="submit" value="Submit" />
+</form>
+}
+```
+
 ## Rendering list of data
+
+```
+const items=[{name:'sanjeev',age:25},{name:'rahul',age:24}];
+<ul>{items.map(item=>{<li>{item.name}</li>})}<ul>
+```
 
 ## Using stateful lists
 
+```
+const items=[{name:'sanjeev',age:25},{name:'rahul',age:24}];
+const [listItems,setListItems]=useState(items);
+
+<ul>{listItems.map(item=>{<li>{item.name}</li>})}<ul>
+```
+
 ## Concepts of keys
+
+-  Keys help React identify which items have changed, are added, or are removed.
+   Keys should be given to the elements inside the array to give the elements a
+   stable identity
 
 ## Conditional content
 
+```
+function UserGreeting(props) {
+  return <h1>Welcome back!</h1>;
+}
+
+function GuestGreeting(props) {
+  return <h1>Please sign up.</h1>;
+}
+
+function Greeting(props) {
+  const isLoggedIn = props.isLoggedIn;
+  if (isLoggedIn) {
+    return <UserGreeting />;
+  }
+  return <GuestGreeting />;
+}
+
+ReactDOM.render(
+  // Try changing to isLoggedIn={true}:
+  <Greeting isLoggedIn={false} />,
+  document.getElementById('root')
+);
+```
+
 ## Dynamic styling
 
-## Styling React Components
+`<div className={props.className}><div>`
 
 ## Dynamic inline style
+
+`<h1 style={{color:`${isValid?'red':''}`}}></h1>`
 
 ## Styled components
 
@@ -93,25 +273,117 @@ const myFunction=(props)=>{
 
 ## Css modules
 
+`import style from './path';` every class is properties of style
+
+### access style properties
+
+`style.classname` if class name without hyphen(-) `style['class-name']`if class
+name have hyphen(-) `<div className={style.classname}></div>`
+
 ## Dynamic styles with css modules
+
+<div className={`${isValid?style.classname:''}`></div>
 
 ## Creating reusable button
 
+```
+const Button=(props)=>{
+return <button
+      type={props.type || 'button'}
+      className={`${classes.button} ${props.className}`}
+      onClick={props.onClick}
+      disabled={props.disabled}>{props.children}</button>
+}
+```
+
 ## Creating reusable card
 
+```
+import classes from './Card.module.css';
+const Card = (props) => {
+   const style = `${classes.card} ${props.className}`;
+   return <div className={style}>{props.children}</div>;
+};
+export default Card;
+
+```
+
 ## Creating reusable input
+
+```
+import React from 'react';
+import classes from './Input.module.css';
+const Input = React.forwardRef((props, ref) => {
+   return (
+      <div className={classes.input}>
+         <label htmlFor={props.input.id}>{props.label}</label>
+         <input ref={ref} {...props.input} />
+      </div>
+   );
+});
+
+export default Input;
+```
 
 ## Managing the User input state
 
 ## Modal
 
+```
+import { Fragment } from 'react';
+import reactDom from 'react-dom';
+
+import classes from './Modal.module.css';
+
+const Backdrop = (props) => {
+   return <div className={classes.backdrop} onClick={props.onHide} />;
+};
+const ModalOverlays = (props) => {
+   return <div className={classes.modal}>{props.children}</div>;
+};
+const Modal = (props) => {
+   return (
+      <Fragment>
+         {reactDom.createPortal(
+            <Backdrop onHide={props.onHide} />,
+            document.getElementById('overlays')
+         )}
+         {reactDom.createPortal(
+            <ModalOverlays>{props.children}</ModalOverlays>,
+            document.getElementById('overlays')
+         )}
+      </Fragment>
+   );
+};
+export default Modal;
+
+```
+
 # Working with fragment ,portal and refs
 
 ## Creating custom wrapper component
 
+```
+const Wrapper=(props)=>{
+  return <div>{props.children}</div>
+}
+```
+
 ## React fragment
 
+to wrap 2 or more than element in single to avoid jsx limitation builtin react
+
+wrapper method
+
+-  <>{...}</>
+-  <React.Fragment>{...}</React.Fragment>
+-  <Fragment>{...}<Fragment>
+
 ## React portals
+
+-  Portals provide a first-class way to render children into a DOM node that
+   exists outside the DOM hierarchy of the parent component.
+   `{ReactDOM.createPortal(<h1>out of dom render</h1>,document.getElementById('id'))}`
 
 ## Working with refs
 
@@ -148,3 +420,7 @@ const myFunction=(props)=>{
 ## component lifecycle method
 
 ## class-based component and context
+
+```
+
+```
