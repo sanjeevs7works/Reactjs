@@ -387,19 +387,72 @@ wrapper method
 
 ## Working with refs
 
+Refs provide a way to access DOM nodes or React elements created in the render
+method.
+
+### There are a few good use cases for refs:
+
+-  Managing focus, text selection, or media playback.
+-  Triggering imperative animations.
+-  Integrating with third-party DOM libraries.
+-  Avoid using refs for anything that can be done declaratively.
+
+## useRef()
+
+```
+const inputRef=useRef();
+<div ref={inputref}></div>
+
+```
+
 ## Controlled vs uncontrolled
 
 # components Handling side effects,Reducer and context api
 
 ## Side effects
 
-## useEffect(),dependencies
+Data fetching, setting up a subscription, and manually changing the DOM in React
+components are all examples of side effects. Whether or not you’re used to
+calling these operations “side effects” (or just “effects”), you’ve likely
+performed them in your components before.
 
-## useEffect cleanup function
+`useEffect()`-
+
+### useEffect without cleanup
+
+useEffect(()=>{
+
+},[dependencies]);
+
+### useEffect with cleanup
+
+useEffect(()=>{
+
+return ()=>{
+
+} },[dependencies])
 
 ## useReducer and Reducers in general
 
-## React Context o useContext api
+useReducer is usually preferable to useState when you have complex state logic
+that involves multiple sub-values or when the next state depends on the previous
+one. useReducer also lets you optimize performance for components that trigger
+deep updates because you can pass dispatch down instead of callbacks.
+
+```
+const [state,dispatch]=useReducer(reducerFunction,initialState,callback); const
+reducerFunction=>(state,action)=>{
+if(action.type=='ADD'){
+  someaction
+}
+}
+
+dispatch({action:'ADD',value:})
+```
+
+## React Context
+
+## useContext api
 
 ## forwarding Ref Behind the scenes
 
