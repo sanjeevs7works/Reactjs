@@ -420,37 +420,49 @@ performed them in your components before.
 
 ### useEffect without cleanup
 
+```
 useEffect(()=>{
 
 },[dependencies]);
+```
 
 ### useEffect with cleanup
 
+```
 useEffect(()=>{
 
 return ()=>{
 
 } },[dependencies])
+```
 
-## useReducer and Reducers in general
-
+## [useReducer and Reducers in general](#use-reducer)
+<a name='use-reducer'>
 useReducer is usually preferable to useState when you have complex state logic
 that involves multiple sub-values or when the next state depends on the previous
 one. useReducer also lets you optimize performance for components that trigger
-deep updates because you can pass dispatch down instead of callbacks.
+deep updates because you can pass dispatch down instead of callbacks.</a>
 
 ```
-const [state,dispatch]=useReducer(reducerFunction,initialState,callback); const
-reducerFunction=>(state,action)=>{
+const reducerFunction=>(state,action)=>{
 if(action.type=='ADD'){
   someaction
 }
 }
+const [state,dispatch]=useReducer(reducerFunction,initialState,callback);
+
 
 dispatch({action:'ADD',value:})
 ```
 
 ## React Context
+
+In a typical React application, data is passed top-down (parent to child) via
+props, but such usage can be cumbersome for certain types of props (e.g. locale
+preference, UI theme) that are required by many components within an
+application. Context provides a way to share values like these between
+components without having to explicitly pass a prop through every level of the
+tree.
 
 ## useContext api
 
