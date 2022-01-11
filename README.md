@@ -437,6 +437,7 @@ return ()=>{
 ```
 
 ## [useReducer and Reducers in general](#use-reducer)
+
 <a name='use-reducer'>
 useReducer is usually preferable to useState when you have complex state logic
 that involves multiple sub-values or when the next state depends on the previous
@@ -464,6 +465,33 @@ application. Context provides a way to share values like these between
 components without having to explicitly pass a prop through every level of the
 tree.
 
+-  ### creating context
+
+   -  `const myContext=React.createContext(defaultValue);`
+
+-  ### providing content
+
+   -  The Provider component accepts a value prop to be passed to consuming
+      components that are descendants of this Provider. One Provider can be
+      connected to many consumers. Providers can be nested to override values
+      deeper within the tree.
+   -  ` <MyContext.Provider value={/_ some value _/}>`
+
+-  ### consuming component
+   -A React component that subscribes to context changes. Using this component
+   lets you subscribe to a context within a function component.
+-  ```
+     <MyContext.Consumer>/
+     {value => return(jsx);}
+   </MyContext.Consumer>
+   ```
+
+```
+
+default value can be anything,object,array,string,boolean,number,etc..
+
+###
+
 ## useContext api
 
 ## forwarding Ref Behind the scenes
@@ -485,6 +513,8 @@ tree.
 ## component lifecycle method
 
 ## class-based component and context
+
+```
 
 ```
 
