@@ -481,8 +481,8 @@ tree.
    -A React component that subscribes to context changes. Using this component
    lets you subscribe to a context within a function component.
 -  ```
-     <MyContext.Consumer>/
-     {value => return(jsx);}
+    <MyContext.Consumer>/
+       {value => return(jsx);}
    </MyContext.Consumer>
    ```
 

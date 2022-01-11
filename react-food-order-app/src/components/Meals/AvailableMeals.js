@@ -5,12 +5,22 @@ import MealItem from './MealItem/MealItem';
 
 const AvailableMeals = () => {
    const [meals, setMeals] = useState([]);
+   const [isLoading, setIsLoading] = useState(false);
+   const [hasError, setHasError] = useState(null);
    useEffect(() => {
+      setIsLoading(true);
+
       const fetchMeals = async () => {
-         const data = await fetch(
-            'https://react-food-app-3433b-default-rtdb.asia-southeast1.firebasedatabase.app/meals.json'
+         const response = await fetch(
+            'https://react-food-app-3433b-default-rtdb.asia-southeast1.firebasedatabase.app/meals.json',
+            {
+               mode: 'cors',
+            }
          );
-         const responseData = await data.json();
+         if (!response.ok) {
+            throw new Error('something went wrong');
+         }
+         const responseData = await response.json();
 
          let loadedData = [];
          for (let key in responseData) {
@@ -22,9 +32,30 @@ const AvailableMeals = () => {
             });
          }
          setMeals(loadedData);
+         setIsLoading(false);
       };
-      fetchMeals();
+
+      fetchMeals().catch((err) => {
+         setIsLoading(false);
+         setHasError(err.message);
+      });
    }, []);
+
+   if (isLoading) {
+      return (
+         <section className={classes['meal-loading']}>
+            <p>Loading...</p>
+         </section>
+      );
+   }
+
+   if (hasError) {
+      return (
+         <section className={classes['meal-loading-error']}>
+            <p>{hasError}</p>
+         </section>
+      );
+   }
 
    const mealList = meals.map((meal) => (
       <MealItem
