@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import { useReducer } from 'react';
 
 const reducerFunction = (state, action) => {
    if (action.type === 'INPUT') {
@@ -49,7 +49,7 @@ const useInput = (validate) => {
       hasError,
       inputChangeHandler,
       inputBlurHandler,
-      resetInput
+      resetInput,
    };
 };
 export default useInput;
