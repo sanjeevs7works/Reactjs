@@ -1,25 +1,28 @@
-import { Route, Routes } from 'react-router-dom';
-import Product from './screens/Product';
-import Welcome from './screens/Welcome';
-import classes from './App.module.css';
+import { Route, Switch, Redirect } from 'react-router';
+import Layout from './components/layout/Layout';
+import AllQuotes from './screens/AllQuotes';
+import NewQuotes from './screens/NewQuotes';
+import QuotesDetails from './screens/QuotesDetails';
 
 function App() {
-   return (
-      <div className={classes.app}>
-         <ul>
-            <li>
-               <a href='/welcome'>Welcome</a>
-            </li>
-            <li>
-               <a href='/product'>Product</a>
-            </li>
-         </ul>
-         <Routes>
-            <Route path='/product' element={<Product />} />
-            <Route path='/welcome' element={<Welcome />} />
-         </Routes>
-      </div>
-   );
+  return (
+    <Layout>
+      <Switch>
+        <Route path='/' exact>
+          <Redirect to='/quotes' />
+        </Route>
+        <Route path='/quotes' exact>
+          <AllQuotes />
+        </Route>
+        <Route path='/quotes/:quotesId' >
+          <QuotesDetails />
+        </Route>
+        <Route path='/new-quotes'>
+          <NewQuotes />
+        </Route>
+      </Switch>
+    </Layout>
+  );
 }
 
 export default App;
